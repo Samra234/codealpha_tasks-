@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://samdevweb.netlify.app/sitemap.xml
