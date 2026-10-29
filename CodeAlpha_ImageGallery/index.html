@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <title>Photography Gallery Collection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="gallery-header">
+        <h1 id="heading">My Photo Gallery</h1>
+        <p>Explore beautiful moments, one picture at a time.</p>
+    </header>
+
+    <!-- Category Folders Container -->
+    <div class="gallery-container">
+        <!-- Nature Category Card -->
+        <div class="folder-box" data-category="nature">
+            <img src="image/nature/image6.jpeg" alt="Nature Cover" class="folder-image">
+            <div class="folder-name">Nature</div>
+        </div>
+
+        <!-- Car Category Card -->
+        <div class="folder-box" data-category="cars">
+            <img src="image/cars/image2.jpeg" alt="Cars Cover" class="folder-image">
+            <div class="folder-name">Cars</div>
+        </div>
+
+        <div class="folder-box" data-category="animals">
+            <img src="image/animals/image1.jpeg" alt="Animal Cover" class="folder-image">
+            <div class="folder-name">animals</div>
+        </div>
+        <div class="folder-box" data-category="landscape">
+            <img src="image/landscape/image12.jpeg" alt="Landscape Cover" class="folder-image">
+            <div class="folder-name">landscape</div>
+        </div>
+        <div class="folder-box" data-category="fruit">
+            <img src="image/fruit/image7.jpeg" alt="Fruit Cover" class="folder-image">
+            <div class="folder-name">fruit</div>
+        </div>
+    </div>
+
+    <!-- Main Grid Gallery (Populated with Nature images by default) -->
+    <div class="gallery" id="mainGalleryGrid">
+        <!-- <div class="gallery-item"><img src="image/nature/image1.jpeg" alt="Nature 1"></div>
+        <div class="gallery-item"><img src="image/nature/image2.jpeg" alt="Nature 2"></div>
+        <div class="gallery-item"><img src="image/nature/image3.jpeg" alt="Nature 3"></div>
+        <div class="gallery-item"><img src="image/nature/image4.jpeg" alt="Nature 4"></div>
+        <div class="gallery-item"><img src="image/nature/image5.jpeg" alt="Nature 5"></div>
+        <div class="gallery-item"><img src="image/nature/image6.jpeg" alt="Nature 6"></div>
+        <div class="gallery-item"><img src="image/nature/image7.jpeg" alt="Nature 7"></div>
+        <div class="gallery-item"><img src="image/nature/image8.jpeg" alt="Nature 8"></div>
+        <div class="gallery-item"><img src="image/nature/image9.jpeg" alt="Nature 9"></div>
+        <div class="gallery-item"><img src="image/nature/image10.jpeg" alt="Nature 10"></div>
+        <div class="gallery-item"><img src="image/fruit/image1.jpeg" alt="fruit 1"></div>
+        <div class="gallery-item"><img src="image/fruit/image2.jpeg" alt="fruit 2"></div>
+        <div class="gallery-item"><img src="image/fruit/image3.jpeg" alt="fruit 3"></div>
+        <div class="gallery-item"><img src="image/fruit/image5.jpeg" alt="fruit 4"></div>
+        <div class="gallery-item"><img src="image/fruit/image6.jpeg" alt="fruit 5"></div>
+        <div class="gallery-item"><img src="image/fruit/image7.jpeg" alt="fruit 6"></div>
+        <div class="gallery-item"><img src="image/fruit/image8.jpeg" alt="fruit 7"></div>
+        <div class="gallery-item"><img src="image/fruit/image9.jpeg" alt="fruit 8"></div>
+        <div class="gallery-item"><img src="image/fruit/image10.jpeg" alt="fruit 9"></div>
+        <div class="gallery-item"><img src="image/fruit/image5.jpeg" alt="fruit 10"></div>
+        <div class="gallery-item"><img src="image/landscape/image1.jpeg" alt="landscape 1"></div>
+        <div class="gallery-item"><img src="image/landscape/image2.jpeg" alt="landscape 2"></div>
+        <div class="gallery-item"><img src="image/landscape/image3.jpeg" alt="landscape 3"></div>
+        <div class="gallery-item"><img src="image/landscape/image4.jpeg" alt="landscape 4"></div>
+        <div class="gallery-item"><img src="image/landscape/image5.jpeg" alt="landscape 5"></div>
+        <div class="gallery-item"><img src="image/landscape/image6.jpeg" alt="landscape 6"></div>
+        <div class="gallery-item"><img src="image/landscape/image7.jpeg" alt="landscape 7"></div>
+        <div class="gallery-item"><img src="image/landscape/image8.jpeg" alt="landscape 8"></div>
+        <div class="gallery-item"><img src="image/landscape/image9.jpeg" alt="landscape 9"></div>
+        <div class="gallery-item"><img src="image/landscape/image10.jpeg" alt="landscape 10"></div>
+        <div class="gallery-item"><img src="image/landscape/image11.jpeg" alt="landscape 11"></div>
+        <div class="gallery-item"><img src="image/landscape/image12.jpeg" alt="landscape 12"></div>
+        <div class="gallery-item"><img src="image/landscape/image13.jpeg" alt="landscape 13"></div>
+        <div class="gallery-item"><img src="image/landscape/image14.jpeg" alt="landscape 14"></div>
+        <div class="gallery-item"><img src="image/landscape/image15.jpeg" alt="landscape 15"></div>
+        <div class="gallery-item"><img src="image/landscape/image16.jpeg" alt="landscape 16"></div>
+        <div class="gallery-item"><img src="image/landscape/image17.jpeg" alt="landscape 17"></div>
+        <div class="gallery-item"><img src="image/landscape/image18.jpeg" alt="landscape 18"></div>
+        <div class="gallery-item"><img src="image/cars/image1.jpeg" alt="car 1"></div>
+        <div class="gallery-item"><img src="image/cars/image2.jpeg" alt="car 2"></div>
+        <div class="gallery-item"><img src="image/cars/image3.jpeg" alt="car 3"></div>
+        <div class="gallery-item"><img src="image/cars/image4.jpeg" alt="car 4"></div>
+        <div class="gallery-item"><img src="image/cars/image5.jpeg" alt="car 5"></div>
+        <div class="gallery-item"><img src="image/cars/image6.jpeg" alt="car 6"></div>
+        <div class="gallery-item"><img src="image/cars/image7.jpeg" alt="car 7"></div>
+        <div class="gallery-item"><img src="image/cars/image8.jpeg" alt="car 8"></div>
+        <div class="gallery-item"><img src="image/cars/image9.jpeg" alt="car 9"></div>
+        <div class="gallery-item"><img src="image/cars/image10.jpeg" alt="car 10"></div>
+        <div class="gallery-item"><img src="image/animals/image1.jpeg" alt="animals 1"></div>
+        <div class="gallery-item"><img src="image/animals/image2.jpeg" alt="animals 2"></div>
+        <div class="gallery-item"><img src="image/animals/image3.jpeg" alt="animals 3"></div>
+        <div class="gallery-item"><img src="image/animals/image4.jpeg" alt="animals 4"></div>
+        <div class="gallery-item"><img src="image/animals/image5.jpeg" alt="animals 5"></div>
+        <div class="gallery-item"><img src="image/animals/image6.jpeg" alt="animals 6"></div>
+        <div class="gallery-item"><img src="image/animals/image7.jpeg" alt="animals 7"></div>
+        <div class="gallery-item"><img src="image/animals/image8.jpeg" alt="animals 8"></div>
+        <div class="gallery-item"><img src="image/animals/image9.jpeg" alt="animals 9"></div> -->
+
+    </div>
+
+    <!-- Corrected Lightbox Element Container -->
+    <div class="lightbox" id="lightbox">
+        <button class="close-btn" id="closeBtn" aria-label="Close gallery">&times;</button>
+        <button class="nav-btn prev-btn" id="prevBtn" aria-label="Previous image">❮</button>
+
+        <div class="lightbox-content">
+            <div class="counter" id="counter">1/18</div>
+            <img id="lightboxImage" src="" alt="Active Modal View">
+            <p id="caption"></p>
+        </div>
+        
+        <button class="nav-btn next-btn" id="nextBtn" aria-label="Next Image">❯</button>
+
+        <!-- Thumbnails Strip Container -->
+        <div class="thumbnails" id="thumbnails"></div>
+    </div>
+<script src="gallery-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

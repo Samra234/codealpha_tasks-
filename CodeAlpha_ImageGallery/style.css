@@ -1,0 +1,653 @@
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #0f172a;
+    color: #f8fafc;
+    padding: 30px;
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   2. GALLERY HEADER
+========================================= */
+
+.gallery-header {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: white;
+    margin-bottom: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    /* Entrance animation */
+    animation: slideDown 0.7s ease both;
+
+    transition:
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.gallery-header:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.gallery-header h1 {
+    font-size: 38px;
+    font-weight: 700;
+    margin: 0 0 12px;
+    letter-spacing: 1px;
+
+    transition:
+        color 0.3s ease,
+        letter-spacing 0.3s ease;
+}
+
+.gallery-header h1:hover {
+    color: #38bdf8;
+    letter-spacing: 2px;
+}
+
+.gallery-header p {
+    font-size: 16px;
+    color: #cbd5e1;
+    margin: 0;
+    line-height: 1.6;
+
+    transition: color 0.3s ease;
+}
+
+.gallery-header:hover p {
+    color: #f8fafc;
+}
+
+
+/* =========================================
+   3. CATEGORY SELECTOR CONTAINER
+========================================= */
+
+.gallery-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+
+/* =========================================
+   4. CATEGORY FOLDER CARDS
+========================================= */
+
+.folder-box {
+    width: 160px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease,
+        background-color 0.35s ease;
+
+    animation: fadeUp 0.6s ease both;
+}
+
+/* Keep clicks on the folder working */
+.folder-box img,
+.folder-box .folder-name {
+    pointer-events: none;
+}
+
+/* Folder hover */
+.folder-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45);
+    border-color: #38bdf8;
+    background-color: #26364b;
+}
+
+/* Folder cover image */
+.folder-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+
+    transition:
+        transform 0.5s ease,
+        filter 0.4s ease;
+}
+
+/* Zoom the cover image */
+.folder-box:hover .folder-image {
+    transform: scale(1.1);
+    filter: brightness(1.15);
+}
+
+/* Folder name */
+.folder-name {
+    font-weight: 600;
+    color: #f1f5f9;
+    font-size: 16px;
+    padding: 12px 0;
+    background: #1e293b;
+
+    transition:
+        color 0.3s ease,
+        background-color 0.3s ease;
+}
+
+.folder-box:hover .folder-name {
+    color: #38bdf8;
+    background-color: #26364b;
+}
+
+
+/* =========================================
+   5. GALLERY GRID
+========================================= */
+
+.gallery {
+    max-width: 1400px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 16px;
+}
+
+
+/* =========================================
+   6. GALLERY IMAGE CARDS
+========================================= */
+
+.gallery-item {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #1e293b;
+    cursor: pointer;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+
+    animation: fadeUp 0.45s ease both;
+}
+
+/* Hover over the card */
+.gallery-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.45);
+}
+
+/* Gallery images */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+
+    transition:
+        transform 0.45s ease,
+        filter 0.35s ease;
+}
+
+/* Zoom image on hover */
+.gallery-item:hover img {
+    transform: scale(1.09);
+    filter: brightness(1.12);
+}
+
+
+/* =========================================
+   7. LIGHTBOX BACKGROUND
+========================================= */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.95);
+
+    /* Keep flex layout but hide the lightbox */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+
+    z-index: 2000;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+/* JavaScript adds this class to open the lightbox */
+.lightbox.active {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+/* =========================================
+   8. LIGHTBOX IMAGE CONTENT
+========================================= */
+
+.lightbox-content {
+    width: min(900px, 85%);
+    text-align: center;
+    position: relative;
+}
+
+/* Main lightbox image */
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 65vh;
+    display: block;
+    margin: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+/* Animate the main image when it changes */
+#lightboxImage {
+    animation: imageZoomIn 0.35s ease;
+}
+
+
+/* =========================================
+   9. IMAGE COUNTER AND CAPTION
+========================================= */
+
+.counter {
+    color: #94a3b8;
+    font-size: 15px;
+    margin-bottom: 12px;
+    transition: color 0.3s ease;
+}
+
+#caption {
+    color: #f1f5f9;
+    font-size: 18px;
+    margin-top: 14px;
+    font-weight: 500;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+/* =========================================
+   10. CLOSE BUTTON
+========================================= */
+
+.close-btn {
+    position: absolute;
+    top: -50px;
+    right: 0;
+
+    background: none;
+    border: none;
+    color: white;
+    font-size: 44px;
+    cursor: pointer;
+    line-height: 1;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.close-btn:hover {
+    color: #38bdf8;
+    transform: rotate(90deg) scale(1.1);
+}
+
+
+/* =========================================
+   11. NEXT AND PREVIOUS BUTTONS
+========================================= */
+
+.nav-btn {
+    position: fixed;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 55px;
+    height: 55px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+
+    font-size: 24px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 2001;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+/* Previous and next hover */
+.nav-btn:hover {
+    background: rgba(56, 189, 248, 0.2);
+    color: #38bdf8;
+}
+
+/* Avoid conflicting with the vertical centering transform */
+.prev-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.next-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: 30px;
+}
+
+.next-btn {
+    right: 30px;
+}
+
+
+/* =========================================
+   12. THUMBNAIL STRIP
+========================================= */
+
+.thumbnails {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 10px;
+
+    max-width: 85%;
+    overflow-x: auto;
+
+    padding: 8px;
+
+    scrollbar-width: thin;
+    scrollbar-color: #334155 transparent;
+}
+
+/* Individual thumbnails */
+.thumbnail {
+    width: 75px;
+    height: 52px;
+
+    object-fit: cover;
+
+    border: 2px solid transparent;
+    border-radius: 6px;
+
+    opacity: 0.55;
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+/* Thumbnail hover */
+.thumbnail:hover {
+    opacity: 1;
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Currently selected thumbnail */
+.thumbnail.active {
+    opacity: 1;
+    border-color: #38bdf8;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+
+/* =========================================
+   13. KEYBOARD ACCESSIBILITY
+========================================= */
+
+.folder-box:focus-visible,
+.gallery-item:focus-visible,
+.close-btn:focus-visible,
+.nav-btn:focus-visible,
+.thumbnail:focus-visible {
+    outline: 2px solid #38bdf8;
+    outline-offset: 3px;
+}
+
+
+/* =========================================
+   14. ANIMATIONS
+========================================= */
+
+/* Header slides down */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Cards fade up */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Lightbox image zooms in */
+@keyframes imageZoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================
+   15. RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 1024px) {
+    .gallery {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .gallery-item {
+        height: 160px;
+    }
+
+    .nav-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+
+    .prev-btn {
+        left: 15px;
+    }
+
+    .next-btn {
+        right: 15px;
+    }
+
+    .gallery-container {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 12px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .gallery-item {
+        height: 145px;
+    }
+
+    .gallery-header {
+        padding: 30px 12px;
+        margin-bottom: 25px;
+    }
+
+    .gallery-header h1 {
+        font-size: 28px;
+    }
+
+    .gallery-header p {
+        font-size: 14px;
+    }
+
+    .gallery-container {
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+
+    .folder-box {
+        width: 125px;
+    }
+
+    .folder-image {
+        height: 100px;
+    }
+
+    .nav-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+    }
+
+    .prev-btn {
+        left: 8px;
+    }
+
+    .next-btn {
+        right: 8px;
+    }
+
+    .lightbox-content {
+        width: 90%;
+    }
+
+    .lightbox-content img {
+        max-height: 55vh;
+    }
+
+    .thumbnails {
+        bottom: 12px;
+        max-width: 90%;
+        gap: 6px;
+    }
+
+    .thumbnail {
+        width: 55px;
+        height: 42px;
+    }
+
+    .close-btn {
+        top: -40px;
+        font-size: 36px;
+    }
+
+    #caption {
+        font-size: 16px;
+    }
+}
+
+
+/* =========================================
+   16. REDUCE MOTION WHEN REQUESTED
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
