@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8edf3;
+    font-family: Arial, sans-serif;
+}
+
+/* Calculator */
+.Calculator {
+    width: 400px;
+    padding: 25px;
+    background: #1e293b;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* Screen */
+#screen {
+    width: 100%;
+    height: 90px;
+    margin-bottom: 25px;
+    padding: 15px 20px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    background: #0f172a;
+    border: 2px solid #334155;
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+/* Number / operation displayed on screen */
+#screen p {
+    width: 100%;
+    color: #f8fafc;
+    font-size: 32px;
+    font-weight: 500;
+    text-align: right;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Buttons container */
+#buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+/* All buttons */
+button {
+    height: 65px;
+    border: none;
+    border-radius: 12px;
+
+    background: #334155;
+    color: white;
+
+    font-size: 22px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease,
+        box-shadow 0.2s ease;
+}
+
+/* Hover */
+button:hover {
+    background: #475569;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Click effect */
+button:active {
+    transform: scale(0.94);
+}
+
+/* Operator buttons */
+.operator {
+    background: #f59e0b;
+    color: white;
+}
+
+.operator:hover {
+    background: #d97706;
+}
+
+/* Equal button */
+.equal {
+    background: #22c55e;
+    color: white;
+}
+
+.equal:hover {
+    background: #16a34a;
+}
+
+/* Clear button */
+.clear {
+    background: #ef4444;
+    color: white;
+}
+
+.clear:hover {
+    background: #dc2626;
+}
+
+/* Zero button if it has a special class */
+.zero {
+    grid-column: span 2;
+}
+
+/* Responsive design */
+@media (max-width: 450px) {
+    .Calculator {
+        width: 92%;
+        padding: 18px;
+    }
+
+    button {
+        height: 58px;
+        font-size: 20px;
+    }
+
+    #screen {
+        height: 80px;
+    }
+
+    #screen p {
+        font-size: 27px;
+    }
+
+    .buttons {
+        gap: 9px;
+    }
+}
+ 
